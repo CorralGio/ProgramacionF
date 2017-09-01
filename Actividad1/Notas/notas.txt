@@ -1,0 +1,60 @@
+Comando		Descripcion
+ls		Enlista los  archivos dentro de un directorio.
+		Ej. ls -l /home/corralgio/ProgFortran
+
+echo		Es usado para para mandar mensajes a la terminal o archivos.
+		Ej. echo hola mundo
+
+pwd		Es usado para saber el directorio en el que te encuentras
+		trabajando.
+
+file		Te dice que tipo es un archivo en particular
+		Ej. file notas.txt
+
+man		Abre el manual del comando que pones despues de man
+		Ej. man ls
+
+mkdir		Este coomando crea un directorio en la ubicacacion que
+		encuentras.
+		Ej. mkdir ProgFortran
+
+rmdir		Remueve/elimina el directorio que nombras.
+		Ej. rmdir ProgFortran
+
+rm		Remueve/elimina el archivo que nombres.
+		Ej. rm notas.txt
+
+touch		Si se pone un nombre de archivo que no exista, creara
+		archivo en blanco con ese nombre.
+
+cp		Copia un archivo o directorio en el lugar indicado.
+		Ej. cp notas.txt /home/corralgio/ProgFortran
+
+mv		Mueve un archivo o directorio al lugar indicado.
+		Ej. mv notas.txt/home/corralgio/ProgFortran/Notas
+
+vi		Editas el archivo que menciones.
+		Ej. vi notas.txt
+		Puedes cambiar de la funcion "editar" a funcion
+		"insertar" con la tecla "i".
+
+cat		Este comando hace visible el texto del archivo.
+		Ej. cat notas.txt
+
+less		Hace visible el contenido de un texto, se
+		recomienda para textos mas grandes ya que
+		es posible moverte entre hojas.
+		Ej. less notas.txt
+
+chmod		Cambia los permisos que tiene una persona respecto
+		a un archivo.
+		Primero va el nombre del usuario
+		+ o - para indicar si remueves o das permiso.
+		r para que tengan permisos de leer
+		w si tendran permisos de escribir
+		x si se les otorgara permiso de ejecutar
+		Ej. chmod corralgio+w
+
+		
+		
+

@@ -1,0 +1,13 @@
+Comando		Descripcion
+ls		Enlista los  archivos dentro de un directorio.
+		Ej. ls -l /home/corralgio/ProgFortran
+
+echo		Es usado para para mostrar mensajes.
+		Ej. echo hola mundo
+
+pwd		Es usado para saber el directorio en el que te encuentras
+		trabajando.
+
+file		Te dice que tipo es un archivo en particular
+		Ej. file notas.txt
+
