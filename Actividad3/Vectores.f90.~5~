@@ -1,0 +1,22 @@
+program Vector
+  implicit none
+  real, parameter :: g = 4.9  !como ocupamos 1/2 g para los calculos
+  real, parameter :: pi = 3.1415927
+  integer :: t
+
+  real :: a, vo
+  real, dimension (100) :: x,y
+
+  write(*,*) 'De por favor el angulo de tiro y la velocidad inicial'
+  read (*,*) a, vo
+
+  a = a * pi / 180
+
+  do t =1, 100
+  x = vo * t * cos(a)
+  y = vo * t * sin(a) - (g * t**2)
+  write(*,*) 'x(',t,'): ',x
+  write(*,*9 'y(',t,'): ',y
+  
+end do
+end program Vector

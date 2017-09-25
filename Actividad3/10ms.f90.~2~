@@ -1,0 +1,75 @@
+program ms
+  implicit none
+  real, parameter :: g = 4.9  !como ocupamos 1/2 g para los calculos.
+  real, parameter :: pi = 3.1415927
+  real, parameter :: vo = 10
+  integer :: i
+
+  real :: a
+  real, dimension (10) :: x,y
+
+  a = a * pi / 180
+
+  open(1, file='15grados.dat', status='unknown')
+  do i =1, 10
+  a = 15 * pi / 180
+  x(i) = vo * i * cos(a)
+  y(i) = vo * i * sin(a) - (g * i**2)
+  write(1,*) x(i), y(i)
+  
+  end do
+  close(1)
+
+  open(2, file='30grados.dat', status='unknown')
+  do i =1, 10
+  a = 30 * pi / 180
+  x(i) = vo * i * cos(a)
+  y(i) = vo * i * sin(a) - (g * i**2)
+  write(1,*) x(i), y(i)
+  
+  end do
+  close(2)
+
+  open(3, file='45grados.dat', status='unknown')
+  do i =1, 10
+  a = 15 * pi / 180
+  x(i) = vo * i * cos(a)
+  y(i) = vo * i * sin(a) - (g * i**2)
+  write(1,*) x(i), y(i)
+  
+  end do
+  close(3)
+
+  open(4, file='60grados.dat', status='unknown')
+  do i =1, 10
+  a = 60 * pi / 180
+  x(i) = vo * i * cos(a)
+  y(i) = vo * i * sin(a) - (g * i**2)
+  write(1,*) x(i), y(i)
+  
+  end do
+  close(4)
+
+  open(5, file='75grados.dat', status='unknown')
+  do i =1, 10
+  a = 75 * pi / 180
+  x(i) = vo * i * cos(a)
+  y(i) = vo * i * sin(a) - (g * i**2)
+  write(1,*) x(i), y(i)
+  
+  end do
+  close(5)
+
+  open(6, file='90grados.dat', status='unknown')
+  do i =1, 10
+  a = 90 * pi / 180
+  x(i) = vo * i * cos(a)
+  y(i) = vo * i * sin(a) - (g * i**2)
+  write(1,*) x(i), y(i)
+  
+  end do
+  close(6)
+end program ms
+
+!!Este programa calcula la posicion de una particula la ser lanzada
+!!con una velocidad de 10 m/s y a distintos angulos predeterminados.

@@ -1,0 +1,99 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{graphicx}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Actividad 3}
+\author{Corral Valdez Jesus Giovanni\\
+Departamento de Física
+}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\clearpage
+\section{Posición de un proyectil}
+Se puede saber la posición de un proyectil en cualquier instante de tiempo \\
+conociendo la velocidad con la que fue lanzada y el ángulo de inclinación.
+\subsection{Posicion horizontal}
+\begin{equation}
+x = v_o t cos(\theta)
+\end{equation}
+Con esta ecuacion se puede encontrar donde está en el eje horizontal la partícula, o mas bien, se puede saber el desplazamiento que ha llevado.
+\subsection{Posición vertical}
+\begin{equation}
+y = v_o t sin(\theta) - \frac {1} {2} gt^2
+\end{equation}
+Esta ecuación te proporciona la ubicación de la partícula en el eje vertical
+\section{Programa para encontrar la posición}
+\begin{verbatim}
+program ms
+  implicit none
+  integer :: i, a
+  integer, parameter :: ntimes = 100
+  integer, parameter :: maxang = 90
+  real, dimension (200) :: x,y
+  real :: radian, time, fa, fi
+  real, parameter :: deltat = 0.1
+  real, parameter :: g = 5  !como ocupamos 1/2 g para los calculos.
+  real, parameter :: pi = 3.1415927
+  real, parameter :: vo = 10
+
+
+ open (1, file = 'losdatos.dat', status='unknown')
+  do a=15, 90, 15
+	fa = float(a)
+	radian = fa * pi / 180
+	do i=1, ntimes
+	fi = float(i)
+	time = fi * deltat
+	x(i) = vo * time * cos(radian)
+	y(i) = vo * time * sin(radian) - 0.5 * g * time * time
+	if(y(i).LT.0) exit	
+   	write (1,*) x(i), y(i)
+
+
+  end do
+write(1,*)' '
+end do
+close(1)
+
+
+end program ms
+   
+
+
+!!Este programa calcula la posicion de una particula la ser lanzada
+!!con una velocidad de 10 m/s y a distintos angulos predeterminados.
+
+\end{verbatim}
+Este programa proporciona a una hoja de datos los valores de la posición tanto horizontal  como vertical del proectil cuando es lanzado a 10 m/s a distintos angulos (15, 30, 45, 60, 75, 90).
+\clearpage
+\section{Gráfica}
+Esta es la gáfica que da expone los datos obtenidos durante la ejecución del programa realizado en esta práctica.
+Se realizado con el graficador GnuPlot con el código:
+\begin{verbatim}
+plot 'losdatos.dat' with linespoints ls 1
+
+\end{verbatim}
+\begin{figure}
+  \includegraphics[width=\linewidth]{datos.png}
+  \caption{Grafica de posición.}
+  \label{fig:boat1}
+\end{figure}
+
+\end{document}
+
+\end{document}
