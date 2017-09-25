@@ -1,0 +1,28 @@
+program altura_max
+  implicit none
+  real, parameter :: g = 9.8
+  real, parameter :: pi = 3.1415927
+  real :: v, a
+  real :: h, vy, square
+
+  !leer valores para la velocidad inicial y el angulo de la
+  !trayectoria.
+  write (*,*) 'De la velocidad inicial y el angulo de tiro'
+  read (*,*) v, a
+
+  !convertir el angulo a radianes.
+  a = a * pi / 180
+
+  !ecuacion para tener la velocidad vertical.
+  vy = v * sin(a)
+
+  !sacar la altura maxima.
+  vy = vy * vy !!velocidad al cuadrado
+  square = sin(a) * sin(a) !seno al cuadrado
+  h = vy * sencuadrado / 2 * g 
+
+  !el resultado
+  write(*,*) 'h: ',h,'
+
+
+end program altura_max

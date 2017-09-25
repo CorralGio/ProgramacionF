@@ -1,0 +1,201 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{hyperref}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Actividad 2}
+\author{Corral Valdez Jesus Giovanni\\
+Departamento de Física\\
+Universidad de Sonora}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\clearpage
+\section{Movimiento de proyectiles.}
+El movimiento de proyectiles es un tipo de movimiento en el que una partícula u objeto es lanzada cerca de la superficie de la Tierra y se mueve a través de un recorrido curveado bajo la acción de la gravedad. El objeto comienza con una velocidad inicial que depende de las componentes de la velocidad horizontal y vertical que tenga, que van cambiando conforme va pasando el tiempo en función de la aceleración y la fuerza de gravedad.
+
+\clearpage
+\section{Programas para calculo de proyectiles}
+\subsection{Primer Programa: Calculo de Proyectiles.}
+En la tabla de de la siguiente hoja se muestra una serie de datos que se le proporcionó al programa y los datos que este arrojó, este programa de ejemplo calcula la posición vertical y horizontal, así como la velocidad final. Pero no es posible encontrar con certeza el tiempo necesario para encontrar el alcance maximo con el angulo de 45 grados.
+\begin{verbatim}
+program projectile
+  implicit none
+
+  ! definimos constantes
+  real, parameter :: g = 9.8
+  real, parameter :: pi = 3.1415927
+
+  ! definimos las variables
+  real :: a, t, u, x, y
+  real :: theta, v, vx, vy
+
+  ! Leer valores para el ángulo a, el tiempo t, y la velocidad inicial u desde la terminal
+  write(*,*) 'Dame el ángulo, el tiempo y la rapidez inicial'
+  read(*,*) a, t, u
+
+  ! convirtiendo ángulo a radianes
+  a = a * pi / 180.0
+  
+  ! las ecuaciones de la posición en x y y
+  x = u * cos(a) * t
+  y = u * sin(a) * t - 0.5 * g * t * t
+
+  ! La velocidad al tiempo t
+  vx = u * cos(a)
+  vy = u * sin(a) - g * t
+  v = sqrt(vx * vx + vy * vy)
+  theta = atan(vy / vx) * 180.0 / pi
+ 
+ ! escribiendo el resultado en la pantalla
+  write(*,*) 'x: ',x,'  y: ',y
+  write(*,*) 'v: ',v,'  theta: ',theta
+
+end program projectile
+
+
+\end{verbatim}
+\begin{table}[]
+\centering
+\caption{Calculo de proyectiles.}
+\label{my-label}
+\begin{tabular}{llllll}
+ang  & t  & Vo & x        & y          & Vf       \\
+50 & 40 & 30 & 771.3452 & -6920.7466 & 369.5222 \\
+80 & 4  & 45 & 31.2567  & 98.8654    & 9.3401   \\
+45 & 10 & 30 & 245.7456 & -317.9271  & 84.4474 
+\end{tabular}
+\end{table}
+
+
+\subsection{Segundo Programa: Tiempo de Vuelo.}
+\begin {equation}
+t = \frac {2v_o sin(theta)} {g}
+\end {equation}
+\begin{verbatim}
+program tiempo_vuelo
+  implicit none
+  !definimos constantes que se utilizaran
+  real, parameter :: g = 9.8
+  real, parameter :: pi=3.1415927
+
+  !se define las variables
+  real :: a, v
+  real :: t
+
+  !Leer valores para el angulo y velocidad inicial.
+  write(*,*) 'Diga angulo, y la velocdad inicial'
+  read(*,*) a, v
+
+  !Convertir los grados a radianes.
+  a= a * pi / 180.0
+
+  !la ecuacion para encontrar el tiempo.
+  t= (2 * v) * sin(a)
+  t= t / g
+
+  !El resultado del tiempo.
+  write(*,*) 't: ',t
+
+ end program tiempo_vuelo
+\end{verbatim}
+
+\clearpage
+\subsection{Tercer programa: Altura Maxima}
+\begin {equation}
+h = \frac {v^2_o sin^2(theta)} {2g}
+\end {equation}
+\begin{verbatim}
+program altura_max
+  implicit none
+  real, parameter :: g = 9.8
+  real, parameter :: pi = 3.1415927
+  real :: v, a
+  real :: h, square, two !altura, cuadrado del seno, dos veces la
+                         !gravedad.
+  
+
+  !leer valores para la velocidad inicial y el angulo de la
+  !trayectoria.
+  write (*,*) 'De la velocidad inicial y el angulo de tiro'
+  read (*,*) v, a
+
+  !convertir el angulo a radianes.
+  a = a * pi / 180
+
+
+  !sacar la altura maxima.
+  v = v * v !velocidad al cuadrado
+  square = sin(a) * sin(a) !seno al cuadrado
+  two = 2 * g
+  h = v * square
+  h = h / two
+
+  !el resultado
+  write(*,*) 'altura maxima: ',h
+
+
+end program altura_max
+\end{verbatim}
+
+\clearpage
+
+\subsection{Cuarto programa: Distancia Maxima}
+\begin {equation}
+d = \frac {v^2_o} {g} sin(2theta)
+\end {equation}
+\begin{verbatim}
+program x_max
+  implicit none
+
+  real, parameter :: g = 9.8
+  real, parameter :: pi = 3.1415972
+
+  real :: v, a
+  real :: square, two, d !cuadrado de la velocidad, dos veces el
+                         !angulo, distancia final. 
+
+  write(*,*) 'Indique la velocidad inicial y el angulo de tiro: '
+  read(*,*) v, a
+
+
+  !sacar radianes
+  a = a * pi /180
+  
+  !sacar la velocidad al cuadrado y esta entre gravedad.
+  v = v * v
+  v = v / g
+
+  !el doble angulo.
+  two = 2 * a
+
+  !el calculo de la distancia.
+  d = v * sin(two)
+
+  write (*,*) 'La distancia maxima de tiro es: ', d
+
+end program x_max
+  
+  
+\end{verbatim}
+
+\clearpage
+
+\section{Bibliografia}
+\url{https://en.wikipedia.org/wiki/Projectile_motion}
+
+
+\end{document}
