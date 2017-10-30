@@ -1,0 +1,173 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Evaluacion 1}
+\author{Corral Valdez Jesus Giovanni\\
+Departamento de Fisica \\
+Universidad de Sonora}
+\date{30 de octubre de 2017}
+
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\clearpage
+
+\section{Actividad 1: Esfera}
+\begin{verbatim}
+program esfera
+
+
+  implicit none  
+
+  integer :: ierr
+  character(1) :: yn
+  real :: radius, area, volumen
+  real, parameter :: pi = 3.141592653589793
+
+  interactive_loop: do
+
+
+    write (*,*) 'Declare el radio de la esfera'
+    read (*,*,iostat=ierr) radius
+
+    if (ierr /= 0) then
+      write(*,*) 'Error, entrada invalida'
+      cycle interactive_loop
+    end if
+
+
+    area = 4 * pi * radius * radius
+    volumen = 4 * pi * radius**3 / 3
+
+
+    write (*,'(1x,a7,f14.2,5x,a7,f14.2,5x,a9,f14.2)') &
+      'radius=',radius,'area=',area, 'volumen=',volumen
+
+    yn = ' '
+    yn_loop: do
+      write(*,*) 'Perform another calculation? s[n]'
+      read(*,'(a1)') yn
+      if (yn=='s' .or. yn=='S') exit yn_loop
+      if (yn=='n' .or. yn=='N' .or. yn==' ') exit interactive_loop
+    end do yn_loop
+
+  end do interactive_loop
+
+end program esfera
+
+\end{verbatim}
+
+\section{Actividad 2: Medias}
+\begin{verbatim}
+program summation
+implicit none
+integer :: suma, a, conta
+real :: aritme, armoni, sumarmo, fa, fc, fs
+
+print*, "Este programa realiza las medias de una sumatoria, cuando quiera aplaste 0 para terminar"
+open(unit=10, file="SumData.DAT", status='unknown')
+
+suma = 0
+conta = 0
+sumarmo = 0
+
+do
+ print*, "De numero:"
+ read*, a
+ if (a == 0) then
+  exit
+ else
+suma = suma + a
+conta = conta + 1
+fa = float(a)
+fa = 1/fa
+sumarmo = sumarmo + fa
+
+ end if
+ write(10,*) a
+end do
+fs = float(suma)
+fc = float(conta)
+aritme = fs / fc
+armoni = fc / sumarmo
+
+
+print*, "Sumatoria =", suma
+write(10,*) "Sumatoria =", suma
+write(10,*)' '
+print*, "Media aritmetica =", aritme
+write(10,*) "Media aritmetica =", aritme
+write(10,*) ' '
+print*, "Media armonica =", armoni
+write(10,*) "Media armonica =", armoni
+write(10,*) ' '
+
+
+close(10)
+
+end
+\end{verbatim}
+
+\section{Actividad 3: Pi}
+\begin{verbatim}
+program serie
+ implicit none
+integer :: i
+real :: n, suma, iteracion, pi
+
+  pi = 1
+  iteracion = 1
+ write(*,*) 'El valor de pi/4 segun las repeticiones:'
+     do i=1, 50
+     iteracion = iteracion * (-1)
+     n = 2 * i + 1
+     n = 1 / n
+     n = n * (iteracion)
+     pi = pi + n
+	if (i.EQ.10) then
+	write(*,*) ' '
+	write(*,*) '10:', pi
+        end if
+
+	if (i.EQ.20) then
+	write(*,*) ' '
+	write(*,*) '20:', pi
+        end if
+
+	if (i.EQ.30) then
+	write(*,*) ' '
+	write(*,*) '30:', pi
+        end if
+
+	if (i.EQ.40) then
+	write(*,*) ' '
+	write(*,*) '40:', pi
+        end if
+
+	if (i.EQ.50) then
+	write(*,*) ' '
+	write(*,*) '50:', pi
+        end if
+
+end do
+
+end program serie
+
+\end{verbatim}
+
+
+\end{document}
